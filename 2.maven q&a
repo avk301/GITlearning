@@ -1,0 +1,124 @@
+
+1.Maven Questions and answers
+   Apache Maven is a software project management and comprehension tool. A build automation tool that helps managing the software build lifecycle.
+
+2.Maven artifact
+	An artifact is a JAR, that gets deployed to a Maven repository.
+	Each artifact has a group ID , an artifact ID (artifact name) and a version string.
+
+3.Types of maven repository.
+	local. central. and remote.
+
+4.Build phases in Maven
+	Validate. Compile. Test. Package. Install. Deploy.
+
+5.Explain the highlevel directory structure of a maven project
+	target: folder holds the compiled unit of code as part of the build process.
+	<b>Source:</b> folder usually src/main/java holds java source codes.
+	<b>Test:</b> directory is src/main/test that has all the unit testing codes.
+	
+6.What jar:jar goal does?
+	It creates the jar files from the target/classes directory without recompiling any source classes.
+
+7.What are the minimum requirements for a POM?
+	The minimum requirement for a POM are the following, project root modelVersion groupId artifactId version
+
+8.Can we use different name for POM.xml?
+	Yes. You could mention file name using the -f option. mvn -f parent-pom.xml
+
+9.How do you rename a maven project?
+
+10.maven repository central
+	It is the Maven established repository. For example, your POM specify the dependencies and it is not available in the configured local and the remote repository then maven looks for the resource in Maven Central. Maven provides most of the generic dependency resources at this remote location.
+
+11.POM
+	POM (Project Object Model) is the fundamental unit of work. It is an XML file which holds the information about the project and configuration details used to build a project by Maven along with its dependencies.
+
+12.Maven Repository
+	The location where all the project jars, library jars, plugins or any other project related artifacts that are stored and can be easily used by Maven.
+
+13.Why Maven is used?
+	• Create a jar file • Create war file • Compile code • Unit testing of code • Documenting projects • Reporting
+
+14.Where do we find .class files of a Maven project?
+	Under the folder ${basedir}/target/classes/.
+
+15.Difference between compile and install.
+	Compile compiles the source code of the project whereas Install installs the package into the local repository, for use as a dependency in other projects locally.
+
+16.What is a Maven project's fully qualified artifact name?
+::
+
+17.Order by which Maven searches for the dependency.
+	Local -> Remote -> Maven Central
+	groupId
+	Identifies a project uniquely across all projects.
+	artifactId
+	it becomes the name of the jar file.
+
+18.Explain the difference phases in Maven build Lifecycle.
+	validate - validates the project is correct and all necessary information is available.
+	<b>compile</b> - compile the source code of the project.
+
+	<b>test</b> - tests the compiled source code using a suitable unit testing framework. These tests does not require the code to be packaged or deployed.
+
+	<b>package</b> - take the compiled code and package it to its distributable format, for example, JAR.
+
+	<b>verify</b> - runs any checks on results of integration tests to ensure desired quality criteria are met.
+
+	<b>install</b> - installs the package into the local repository, for using it as a dependency in other projects locally.
+
+	<b>deploy</b> - performed in the build environment, copies the final package to the remote repository for sharing and collaboration with other members of the team and projects.
+
+19.How do I specify packaging/distributable format in Maven?
+	The packaging for your project can be specified via the POM element .
+	Some of the valid packaging values are jar, war, ear and pom. If no packaging value has been specified, it will default to jar.
+
+			<project xmlns="http://maven.apache.org/POM/4.0.0"
+			  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+								  http://maven.apache.org/xsd/maven-4.0.0.xsd">
+			  ...
+			  <packaging>war</packaging>
+			  ...
+			</project>
+
+20.How Maven searches for dependency JAR?
+	Maven searches first for a dependency JAR in local repository. If found it is used else maven looks st the remote repository and download the corresponding version of JAR file and then stores it into local repository.
+
+21.Explain package phase in Maven build lifecycle.
+	package phase pulls the compiled code and package it to a distributable format, such as a JAR. The below is the command to package a maven project.
+	mvn -package  
+22.What are the build lifecycles of Maven?
+	There are 3 built-in build lifecycles.
+	The default lifecycle handles your project deployment.
+	the clean lifecycle handles project cleaning.
+	the site lifecycle handles the creation of the project's site documentation.
+23.What is local repository in Maven?
+	Maven local repository is located in your local system and is created by the maven when you run any maven command.
+	By default, maven local repository is %USER_HOME%/.m2 directory.
+
+We can change the location of maven local repository by changing the settings.xml file. It is located in MAVEN_HOME/conf.
+
+24.What is Maven Central Repository?
+	Maven central repository is located on the web created by the apache maven community.
+	The path of central repository is: http://repo1.maven.org/maven2/.   
+25.Explain Maven remote repository
+	Remote repositories refer to any other type of repository, accessed by a variety of protocols such as file:// and http://. These repositories are set up by a third party to provide their artifacts for downloading.
+	A "remote" repository may also be an internal repository set up on a file or HTTP server within an organization, used to share           private artifacts between development teams and for releases.
+	How do I include dependencies in a jar using Maven?
+	Using jar-with-dependencies as the descriptorRef of your assembly-plugin configuration, we can create a JAR along its dependencies. This built-in descriptor creates an assembly with the classifier jar-with-dependencies using the JAR archive format. Below is the subset of pom.xml that includes assembly-plugin configuration along with jar-with-dependencies descriptor. maven-assembly-plugin package single jar-with-dependencies
+	Configuring resource directories in Maven.
+	By default, Maven configures and lookup into the src/main/resources directory for your project resources. Also additional resources directories could be specified by adding the configuration to the project's Pom.xml. ... ... src/proj_resources ... ...
+
+26.Difference between repository and dependency in Maven.
+	Repository is a collection of artifacts (eg: jars). You can think of it as a mere storage / cache of various artifacts. Dependency is a situation where your project dependent on another artifact to perform its task. (For example., compile, run, unit test etc.)
+
+27.What is an Archetype in Maven framework?
+	Archetype is a Maven plugin that creates a project structure as per its template. The below is the command to create a new maven project based on an archetype.
+			mvn archetype:generate
+
+28.What is goal in Maven?
+	A maven goal represents a specific task that contributes to the building and managing of a Maven project. It may be bound to zero or more build phases. A goal that does not bound to any build phase could be executed outside of the build lifecycle by direct invocation.
+
+
